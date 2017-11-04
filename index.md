@@ -6,4 +6,10 @@ Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
 - Docker >= 17.04
 - Docker Compose >= 1.13
 
+## Einleitung OpenFaas
+
+## Setup
+
+        git clone https://github.com/openfaas/faas
+
 [Tutorial starten](/setup)

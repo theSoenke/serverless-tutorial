@@ -1,5 +1,6 @@
 ---
-title: FaaS Einleitung
+layout: default
+title: Einleitung
 ---
 
 # Einleitung
