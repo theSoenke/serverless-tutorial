@@ -93,7 +93,30 @@ Wenn das Bauen des Containers erfolgreich war kann dieser nun als Funktion in Op
 
 Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben.
 
-## Aufgabe 4: Memes Service
+## Aufgabe 4: Multimedia
+In den bisherigen Aufgaben waren die Ein- und Ausgaben der FaaS Funktionen ausschließlich Text. In dieser Aufgabe soll gezeigt werden, dass sich Serverless auch für Multimedia Aufgaben Einsatz finden kann.
+
+### Memes Service
+In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt 2 Beschriftungen für, sowie eine URL zu seinem Lieblingsmeme Hintergrundbild an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
+
+Als erster Schritt muss eine Funktion deployed werden, die in der Lage ist Memes aus dem Input zu generieren.
+
+    faas-cli deploy --image developius/faas-mememachine --name meme-generator
+
+Damit ist der Meme Service bereits lauffähig und kann Memes generieren. Dies kann ebenfalls über cURL geschehen. Die Ausgabe von cURL wird anschließend in eine Datei geschrieben.
+
+    curl -X POST http://localhost:8080/function/meme-generator -d '{"image": "http://vignette4.wikia.nocookie.net/factpile/images/6/66/Lotr-boromir-1280jpg-b6a4d5_1280w.jpg","top": "ONE DOES NOT SIMPLY JUST","bottom": "DEPLOY TO PRODUCTION"}' > meme.jpg
+
+### Youtube Downloader
+Neben Bilder ist es auch möglich Videos über eine FaaS Funktion herunterzuladen. Im nächsten Beispiel kann eine Youtube URL übergeben werden und die Funktion liefert das heruntergeladene Video zurück.
+
+    faas-cli deploy --image alexellis2/faas-youtubedl --name youtubedl
+
+Dann muss nur noch die Funktion mit einem Video aufgerufen werden:
+
+    curl http://localhost:8080/function/youtubedl -d "https://www.youtube.com/watch?v=nG2rNBFzkGE" > cat_jump.mov
+
+Wenn der Download erfolgreich war sollte sich die Datei cat_jump.mov in einem Videoplayer öffnen lassen.
 
 ## Aufgabe 5: Skalieren und Überwachen
 Ein Vorteil von Serverless Functions ist das automatische Skalieren bei einem Anstieg der Last. Somit wird das Multithreading automtaisch vom FaaS übernommen. Die Skalierung funktioniert sogar besser als bei einem Multithreading auf einem Host, da die Funktionen über mehrere Hosts verteilt werden können, wenn das System entsprechend konfiguriert ist. In dieser Aufgabe soll es eine Einführung zum Autoscaling von Serverless Functions und der Überwachung der Systemlast geben.
