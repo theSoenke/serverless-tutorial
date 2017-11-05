@@ -85,6 +85,14 @@ System.out.print("Hello World");
 
 Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Docker Container gebaut werden. Ein Docker Container ist hier der Weg, um die Anwendung zu verpacken und plattformunabhängig auszuführen, da der Docker Container alle Abhängigkeiten enthält.
 
+    faas-cli build -f stack.yml
+
+Wenn das Bauen des Containers erfolgreich war kann dieser nun als Funktion in OpenFaaS deployed werden.
+
+    faas-cli deploy -f stack.yml
+
+Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `functions/hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben.
+
 ## Aufgabe 4: Memes Service
 
 ## Aufgabe 5: Skalieren und Überwachen

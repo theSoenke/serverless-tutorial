@@ -5,5 +5,5 @@ provider:
 functions:
   memes-9gag:
     lang: Dockerfile
-    handler: ./function
-image: tutorial-9gag
+    handler: ./
+    image: functions/hello-world
