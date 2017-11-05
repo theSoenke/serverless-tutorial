@@ -1,12 +1,27 @@
 ## Vorraussetzungen
 Für dieses Tutorial empfehlen wir die Poolrechner mit Linux zu verwenden. Auf diesen Rechner ist bereits alle notwendige Software und der richtigen Version vorinstalliert.
 
-Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen.
+Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen. 
 Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
 - Docker >= 17.04
 - Docker Compose >= 1.13
 
+Edit: Das ganze funktioniert auch unter Windows, insofern man die Software für Windowssysteme installiert.
+
 ## OpenFaaS Einleitung
+OpenFaaS - was ist das überhaupt? 
+OpenFaaS ist ein Framework, welches es möglich macht, Funktionen zu veröffentlichen, ohne dafür einen Server zu benötigen. Die Funktionen werden sozusagen wie ein Service (Functions as a Service - FaaS) angeboten. Das Aufrufen der Funktionen kann dabei - ganz einfach - über das Windows Terminal (CLI) geschehen. Der Namenszusatz "Open" bedeutet, dass die Software für jedermann frei zugänglich und kostenlos ist. 
+Ein wichtiger Punkt ist, das mit Hilfe von Open FaaS in sämtlichen Sprachen agiert werden kann. C# und Python sind nur zwei Beispiele hierfür. Der fertige Code wird letztlich in einen Container verpackt und auf dem Betriebssystem ausgeführt.
+Warum kann das Ganze so wichtig sein? Hierfür gibt es eine einfache Antwort: Jedes Programm, welches über das Windows Terminal aufgerufen werden kann, wird in einen Container verpackt und als Funktion ausgeliefert. Dies ist nicht nur schnell, da Container als einfache Dateien versendet werden können, sondern auch ressourcensparend. Man kann zudem mit jeder Schnittstelle (API) im Netz interagieren - beispielsweise auch mit HTML Anwendungen, um Abfragen an eine Webanwendung zu starten (vgl. REST). 
+Über die Software Docker werden Anwendungen, Tools und vieles mehr in Container verpackt. Am Ende wird das Ganze auf GitHub, einem Online-Softwareenwicklungssystem mit Versionierung, gepusht. Dabei durchläuft die verpackte Anwendung eine Pipeline, die gleichzeitig die Funktionen testet und deployt, sofern der Test erfolgreich ist. 
+Auch eine Überwachung findet über OpenFaaS statt - die gleichmäßige Auslastung eines Systems wird durch ein stetiges Monitoring der PC-Ressourcen gewährleistet.
+
+### Wichtige Begriffe: 
+- Functions as a Service
+- Framework
+- API
+- Docker
+- GitHub
 
 ## Aufgabe 1: Setup
 Als erster Schritt muss eine lokale OpenFaaS Instanz vor allen weiteren Schritten gestartet werden. Dafür müssen folgende Schritte ausgeführt werden:
