@@ -11,12 +11,25 @@ Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
 ## Aufgabe 1: Setup
 Als erster Schritt muss eine lokale OpenFaaS Instanz vor allen weiteren Schritten gestartet werden. Dafür müssen folgende Schritte ausgeführt werden:
 
-1. Ein Terminal öffnen und in ein Verzeichnis navigieren z.b. `cd ~/Downloads`
-2. OpenFaaS Repository klonen `git clone https://github.com/openfaas/faas`
-3. In das erstelle Verzeichnis navigieren mit `cd faas`
-4. Richtige Version in Git auschecken `git checkout 0.6.8`
-4. Docker Swarm initialisieren mit `docker swarm init`
-5. OpenFaaS Start Script ausführen `./deploy_stack.sh`
+### OpenFaaS
+1. Ein Terminal öffnen und in ein Verzeichnis navigieren z.b.
+
+    `cd ~/Downloads`
+2. OpenFaaS Repository klonen
+
+    `git clone https://github.com/openfaas/faas`
+3. In das erstelle Verzeichnis navigieren
+
+     `cd faas`
+4. Richtige Version in Git auschecken
+
+    `git checkout 0.6.8`
+4. Docker Swarm initialisieren
+
+    `docker swarm init`
+5. OpenFaaS Start Script ausführen
+
+    `./deploy_stack.sh`
 
 Wenn das OpenFaaS Setup erfolgreich gestartet wurde lässt sich nun [http://localhost:8080](http://localhost:8080) im Browser öffnen. Auf mehr Details in dem Webinterface soll in der nächsten Aufgabe eingegangen werden.
 
@@ -47,13 +60,20 @@ Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Inform
 
 Auch über cURL lassen sich Daten mit im Request Body übergeben, die für Funktionen benötigt werden. Hierfür soll nun die die Funktion `func_wordcount` ausgeführt werden. Daten im Request Body lassen sich in cURL folgendermaßen übergeben:
 
-    curl -X POST <URL> -d 'content'
+    curl -X POST <URL> -d "content"
 
 Wenn dieser Funktion ausgeführt wird nun die Anzahl der Wörter zurückgeliefert.
 
 
 ## Aufgabe 3: Funktionen erstellen
 In dem nächsten Schritt sollen nicht mehr länger nur bestehende Funktionen ausgeführt werden, sondern die erste eigene Serverless Function in Java geschrieben werden.
+
+### OpenFaaS CLI
+Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client jedoch deutlich erleichtert. Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden. Dafür muss folgender Befehl im Terminal ausgeführt werden:
+
+    curl -sSL https://cli.openfaas.com | sh #
+
+*Don't try this at home*
 
 ## Aufgabe 4: Funktionen kombinieren
 
