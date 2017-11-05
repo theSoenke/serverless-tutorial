@@ -91,7 +91,7 @@ Wenn das Bauen des Containers erfolgreich war kann dieser nun als Funktion in Op
 
     faas-cli deploy -f stack.yml
 
-Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `functions/hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben.
+Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben.
 
 ## Aufgabe 4: Memes Service
 

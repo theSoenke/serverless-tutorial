@@ -3,7 +3,7 @@ provider:
   gateway: http://localhost:8080
 
 functions:
-  memes-9gag:
+  hello-world:
     lang: Dockerfile
     handler: ./
     image: functions/hello-world
