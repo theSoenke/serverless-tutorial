@@ -1,0 +1,9 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  memes-9gag:
+    lang: Dockerfile
+    handler: ./function
+image: tutorial-9gag
