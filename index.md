@@ -71,12 +71,33 @@ In dem nächsten Schritt sollen nicht mehr länger nur bestehende Funktionen aus
 ### OpenFaaS CLI
 Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client jedoch deutlich erleichtert. Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden. Dafür muss folgender Befehl im Terminal ausgeführt werden:
 
-    curl -sSL https://cli.openfaas.com | sh #
+    curl -sSL https://cli.openfaas.com | sh
 
 *Don't try this at home*
 
-## Aufgabe 4: Funktionen kombinieren
+### Hello World
+In dieser Aufgabe soll endlich die erste eigene Serverless Function programmiert werden.
 
-## Aufgabe 5: Funktionen konsumineren
+## Aufgabe 4: Memes Service
 
-[Tutorial starten](/setup)
+## Aufgabe 5: Skalieren und Überwachen
+Ein Vorteil von Serverless Functions ist das automatische skalieren bei einem Anstieg der Last. Somit wird das Multithreading automtaisch vom FaaS übernommen. Die Skalierung funktioniert sogar besser als bei einem Multithreading auf einem Host, da die Funktionen über mehrere Hosts verteilt werden können, wenn das System entsprechend konfiguriert ist. In dieser Aufgabe soll es eine Einführung zum Autoscaling von Serverless Functions und der Überwachung der Systemlast geben.
+
+### Skalieren
+
+Damit Last auf dem System erzeugt wird können Funktionen auf dem System in einer Schleife aufgerufen werden. Folgender Befehl wird die Funktion `func_nodeinfo` in einer While-Schleife immer wieder aufrufen und das Ergebnis der Funktion im Terminal ausgeben.
+
+    while [ true ] ; do curl -X POST http://localhost:8080/function/func_nodeinfo -d ''; done
+
+Das Ergebnis einer Funktionsausführung wird in etwa so aussehen:
+
+    Platform: linux
+    Arch: x64
+    CPU count: 1
+    Uptime: 45796
+    Hostname: ecf68e8034b8
+
+Bei einer ausreichend großen Last auf dem System wird ein Serverless System automatisch skalieren und neue Instanzen starten, damit Request parallel verarbeitet werden können. In dem Fall von OpenFaaS bedeutet dies, dass neue Docker Container gestartet werden. Damit sollte sich in der Ausgabe nach einer gewissen Zeit neue Hostnamen von neuen Instanzen erscheinen. Dieses skalieren ist bei einem Setup in einem Cluster von Rechner nicht nur lokal möglich, sondern kann über dutzende bis hunderte von Rechnner erfolgen.
+
+### Überwachen
+Für das Überwachen eines Serverless Systems gibt es verschiedene Lösungen. Populär ist in diesem Bereich beispielsweise die von Soundcloud entwickete Open Source Lösung [Prometheus](https://github.com/prometheus/prometheus). OpenFaaS hat standardmäßig ein Monitoring mit Prometheus integriert. Dafür muss [localhost:9090](http://localhost:9090) im Browser geöffnet werden.
