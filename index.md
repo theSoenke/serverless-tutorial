@@ -10,7 +10,7 @@ Edit: Das ganze funktioniert auch unter Windows, insofern man die Software für 
 
 ## OpenFaaS Einleitung
 OpenFaaS - was ist das überhaupt? 
-OpenFaaS ist ein Framework, welches es möglich macht, Funktionen zu veröffentlichen, ohne dafür einen Server zu benötigen. Die Funktionen werden sozusagen wie ein Service (Functions as a Service - FaaS) angeboten. Das Aufrufen der Funktionen kann dabei - ganz einfach - über das Windows Terminal (CLI) geschehen. Der Namenszusatz "Open" bedeutet, dass die Software für jedermann frei zugänglich und kostenlos ist. 
+OpenFaaS ist ein Framework, welches es möglich macht, Funktionen zu veröffentlichen, ohne dafür einen Server zu benötigen. Die Funktionen werden sozusagen wie ein Service (Functions as a Service - FaaS) angeboten. Das Aufrufen der Funktionen kann dabei - ganz einfach - über das  (CLI) geschehen. Der Namenszusatz "Open" bedeutet, dass die Software für jedermann frei zugänglich und kostenlos, eben Open Source, ist. 
 
 Ein wichtiger Punkt ist, das mit Hilfe von Open FaaS in sämtlichen Sprachen agiert werden kann. C# und Python sind nur zwei Beispiele hierfür. Der fertige Code wird letztlich in einen Container verpackt und auf dem Betriebssystem ausgeführt.
 
