@@ -91,7 +91,7 @@ Wenn das Bauen des Containers erfolgreich war kann dieser nun als Funktion in Op
 
     faas-cli deploy -f stack.yml
 
-Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben.
+Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben. Diese "Hello World" Funktion enthält bereits fast alle Grundlagen für komplexere FaaS Funktionen. Alles notwendige, um eine Funktion zu schreiben, ist von stdin die Eingabe zu lesen, Berechnungen durchzuführen und die Ausgabe wieder auf stdout zu schreiben.
 
 ## Aufgabe 4: Multimedia
 In den bisherigen Aufgaben waren die Ein- und Ausgaben der FaaS Funktionen ausschließlich Text. In dieser Aufgabe soll gezeigt werden, dass sich Serverless auch für Multimedia Aufgaben Einsatz finden kann.
@@ -139,3 +139,21 @@ Bei einer ausreichend großen Last auf dem System wird ein Serverless System aut
 
 ### Überwachen
 Für das Überwachen eines Serverless Systems gibt es verschiedene Lösungen. Populär ist in diesem Bereich beispielsweise die von Soundcloud entwickelte Open Source Lösung [Prometheus](https://prometheus.io). OpenFaaS hat bereits ein Monitoring mit Prometheus integriert. Dafür muss [localhost:9090](http://localhost:9090) im Browser geöffnet werden.
+
+## Aufgabe 6: Eigene Funktionen
+Alle, die etwas schneller waren, können jetzt noch versuchen eigene Funktionen zu schreiben. Dazu auch noch eine Java Methode, um Eingaben von stdin lesen zu können:
+
+```java
+private static String readStdin() throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = "";
+    while(true) {
+        String line = br.readLine();
+        if(line==null) {
+            break;
+        }
+        input = input + line + "\n";
+    }
+    return input;
+}
+```
