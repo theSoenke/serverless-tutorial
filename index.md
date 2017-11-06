@@ -65,9 +65,9 @@ POST Request können in cURL mit folgendem Befehl geschickt werden:
 
     curl -X POST <URL>
 
-Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Wenn alles erfolgreich funktioniert hat wird cURL das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
+Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Bei einer erfoglreichen Ausfürhung sollte der OutPut das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
 
-Auch über cURL lassen sich Daten mit im Request Body übergeben, die für Funktionen benötigt werden. Hierfür soll nun die die Funktion `func_wordcount` ausgeführt werden. Daten im Request Body lassen sich in cURL folgendermaßen übergeben:
+Auch über cURL lassen sich Daten mit im Request Body übergeben, die für Funktionen benötigt werden. Hierfür soll nun die Funktion `func_wordcount` ausgeführt werden. Daten im Request Body lassen sich in cURL folgendermaßen übergeben:
 
     curl -X POST <URL> -d "content"
 
@@ -78,14 +78,14 @@ Wenn dieser Funktion ausgeführt wird nun die Anzahl der Wörter zurückgeliefer
 In dem nächsten Schritt sollen nicht mehr länger nur bestehende Funktionen ausgeführt werden, sondern die erste eigene Serverless Function in Java geschrieben werden.
 
 ### OpenFaaS CLI
-Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client jedoch deutlich erleichtert. Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden. Dafür muss folgender Befehl im Terminal ausgeführt werden:
+Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client dabei deutlich erleichtert, Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden. Dafür muss folgender Befehl im Terminal ausgeführt werden:
 
     curl -sSL https://cli.openfaas.com | sh
 
 ### Hello World
 In dieser Aufgabe soll endlich die erste eigene Serverless Function programmiert werden. Die Grundlagen für das ausführen dieser Funktion befinden sich bereits auf [Github](https://github.com/theSoenke/serverless-tutorial/tree/master/tutorial-3). Das Dockerfile und die Datei stack.yml sind bereits vorgebenen und können direkt in ein neues lokales Verzeichnis ohne weitere Anpassungen kopiert werden.
 
-Die Funktion soll in diesem Beispiel in Java programmiert werden. Theorethisch lässt sich die Programmiersprache jedoch frei wählen, solange das Programm in einem Docker Container ausführbar ist. Als erster Schritt muss in dem neu erstelltem Verzeichnis mit den beiden Dateien `Dockerfile` und `stack.yml` eine dritte Datei `Handler.java` erstellt werden. Diese Datei soll die öffentliche Klasse Handler enthalten, sowie die Java main Methode.
+Die Funktion soll in diesem Beispiel in Java programmiert werden. Theorethisch lässt sich die Programmiersprache jedoch frei wählen, solange das Programm in einem Docker Container ausführbar ist. Als erster Schritt muss in dem neu erstelltem Verzeichnis mit den beiden Dateien `Dockerfile` und `stack.yml` eine dritte Datei `Handler.java` erstellt werden. Diese Datei soll die öffentliche Klasse Handler enthalten, welche die Java main Methode implementiert. Die Datei kann in jedem beliebigen Text Editor erstellt werden.
 
 Anschließend sollte die Dateistruktur folgendermaßen aussehen:
 
@@ -96,7 +96,7 @@ hello-world
 |   Handler.java
 ```
 
-Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln also kann die main Methode beispielsweise "Hello World" in der main Methode ausgeben. Die Datei kann in jedem beliebigen Text Editor erstellt werden.
+Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln, also kann die main Methode Beispielsweise "Hello World" ausgeben. 
 
 ```java
 System.out.print("Hello World");
@@ -106,17 +106,17 @@ Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Dock
 
     faas-cli build -f stack.yml
 
-Wenn das Bauen des Containers erfolgreich war kann dieser nun als Funktion in OpenFaaS deployed werden.
+Wenn das Bauen des Containers erfolgreich war, kann dieser nun als Funktion in OpenFaaS deployed werden.
 
     faas-cli deploy -f stack.yml
 
-Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben. Diese "Hello World" Funktion enthält bereits fast alle Grundlagen für komplexere FaaS Funktionen. Alles notwendige, um eine Funktion zu schreiben, ist von stdin die Eingabe zu lesen, Berechnungen durchzuführen und die Ausgabe wieder auf stdout zu schreiben.
+Wenn jetzt wieder das [Webinterface](http://localhost:8080) geöffnet wird, sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben. Diese "Hello World" Funktion enthält bereits fast alle Grundlagen für komplexere FaaS Funktionen. Alles notwendige, um eine Funktion zu schreiben, ist von stdin die Eingabe zu lesen, Berechnungen durchzuführen und die Ausgabe wieder auf stdout zu schreiben.
 
 ## Aufgabe 4: Multimedia
 In den bisherigen Aufgaben waren die Ein- und Ausgaben der FaaS Funktionen ausschließlich Text. In dieser Aufgabe soll gezeigt werden, dass sich Serverless auch für Multimedia Aufgaben Einsatz finden kann.
 
 ### Memes Service
-In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt 2 Beschriftungen für, sowie eine URL zum Bild seines Lieblingsmeme an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
+In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt zwei Beschriftungen, sowie eine URL zum Bild seines Lieblingsmeme, an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
 
 Als erster Schritt muss eine Funktion deployed werden, die in der Lage ist Memes aus dem Input zu generieren.
 
