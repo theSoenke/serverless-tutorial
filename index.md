@@ -96,7 +96,7 @@ hello-world
 |   Handler.java
 ```
 
-Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln also kann die main Methode beispielsweise "Hello World" in der main Methode ausgeben.
+Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln also kann die main Methode beispielsweise "Hello World" in der main Methode ausgeben. Die Datei kann in jedem beliebigen Text Editor erstellt werden.
 
 ```java
 System.out.print("Hello World");
@@ -116,7 +116,7 @@ Wenn jetzt wieder da [Webinterface](http://localhost:8080) geöffnet wird sollte
 In den bisherigen Aufgaben waren die Ein- und Ausgaben der FaaS Funktionen ausschließlich Text. In dieser Aufgabe soll gezeigt werden, dass sich Serverless auch für Multimedia Aufgaben Einsatz finden kann.
 
 ### Memes Service
-In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt 2 Beschriftungen für, sowie eine URL zu seinem Lieblingsmeme Hintergrundbild an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
+In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt 2 Beschriftungen für, sowie eine URL zum Bild seines Lieblingsmeme an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
 
 Als erster Schritt muss eine Funktion deployed werden, die in der Lage ist Memes aus dem Input zu generieren.
 
