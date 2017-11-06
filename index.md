@@ -11,7 +11,7 @@ Edit: Das ganze funktioniert auch unter Windows, insofern man die Software für 
 ## OpenFaaS Einleitung
 OpenFaaS - was ist das überhaupt? OpenFaaS ist ein Open Source Framework für Serverless Functions basierend auf Docker. Docker wird verwendet, um die Funktionen zu "verpacken". Dadurch können die Funktionen in jeder Programmiersprache geschrieben und plattformunabhängig ausgeführt werden. Für OpenFaaS ist es damit egal ob die Funktion in Java, Python oder Prolog geschrieben wurde.
 
-Warum sind Serverless Functions und OpenFaaS in diesem Fall interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google oder Microsoft.
+Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google oder Microsoft.
 
 ### Wichtige Begriffe:
 - Functions as a Service
@@ -159,8 +159,10 @@ Bei einer ausreichend großen Last auf dem System wird ein Serverless System aut
 ### Überwachen
 Für das Überwachen eines Serverless Systems gibt es verschiedene Lösungen. Populär ist in diesem Bereich beispielsweise die von Soundcloud entwickelte Open Source Lösung [Prometheus](https://prometheus.io). OpenFaaS hat bereits ein Monitoring mit Prometheus integriert. Dafür muss [localhost:9090](http://localhost:9090) im Browser geöffnet werden.
 
+Anschließend lassen sich in Prometheus verschiedene Daten visualiseren. Beispielsweise wie häufig wurden bestimme Funktionen aufgerufen? Wie lange hat die Ausführung benötigt? Wie oft wurde etwa die Funktion `func_nodeinfo` in der vorherigen Aufgabe ausgeführt?
+
 ## Aufgabe 6: Eigene Funktionen
-Alle, die etwas schneller waren, können jetzt noch versuchen eigene Funktionen zu schreiben. Dazu auch noch eine Java Methode, um Eingaben von stdin lesen zu können:
+Als Zusatzaufgabe können jetzt noch eigene Funktionen geschrieben werden. Falls die Funktion auch eine Eingabe bekommen soll ein kleines Beispiel, wie die Eingabe in Java von stdin gelesen werden kann:
 
 ```java
 private static String readStdin() throws IOException {
