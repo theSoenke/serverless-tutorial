@@ -78,9 +78,22 @@ Wenn dieser Funktion ausgeführt wird nun die Anzahl der Wörter zurückgeliefer
 In dem nächsten Schritt sollen nicht mehr länger nur bestehende Funktionen ausgeführt werden, sondern die erste eigene Serverless Function in Java geschrieben werden.
 
 ### OpenFaaS CLI
-Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client dabei deutlich erleichtert, Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden. Dafür muss folgender Befehl im Terminal ausgeführt werden:
+Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client dabei deutlich erleichtert, Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden.
+
+### Linux
+Folgender Befehl wird den CLI client in `/usr/local/bin/` installieren:
 
     curl -sSL https://cli.openfaas.com | sh
+
+Bei fehlenden Rechten in `/usr/local/bin/` zu schreiben gibt kann sonst auch der CLI client mit folgenden Befehlen installiert werden:
+
+    cd && mkdir -p bin && cd bin
+    curl https://github.com/openfaas/faas-cli/releases/download/0.4.31/faas-cli
+    chmod +x faas-cli
+    export PATH=$PATH:~/bin
+
+### Windows
+Für die Installation des Clients unter Windows empfehlen wir die Bash Shell zu verwenden. Diese wird bei einer Installation von [Git](https://git-scm.com/) mitinstalliert. Auf den Poolrechner ist `Git Bash` bereits vorinstalliert und kann über die Suche gefunden werden. Anschließend sind die Befehle zu der Linux Anleitung identisch.
 
 ### Hello World
 In dieser Aufgabe soll endlich die erste eigene Serverless Function programmiert werden. Die Grundlagen für das ausführen dieser Funktion befinden sich bereits auf [Github](https://github.com/theSoenke/serverless-tutorial/tree/master/tutorial-3). Das Dockerfile und die Datei stack.yml sind bereits vorgebenen und können direkt in ein neues lokales Verzeichnis ohne weitere Anpassungen kopiert werden.
@@ -96,7 +109,7 @@ hello-world
 |   Handler.java
 ```
 
-Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln, also kann die main Methode Beispielsweise "Hello World" ausgeben. 
+Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem Fall soll es sich noch um eine Hello World Anwendung handeln, also kann die main Methode Beispielsweise "Hello World" ausgeben.
 
 ```java
 System.out.print("Hello World");
