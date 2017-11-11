@@ -11,7 +11,7 @@ Edit: Das ganze funktioniert auch unter Windows, insofern man die Software für 
 ## OpenFaaS Einleitung
 OpenFaaS - was ist das überhaupt? OpenFaaS ist ein Open Source Framework für Serverless Functions basierend auf Docker. Docker wird verwendet, um die Funktionen zu "verpacken". Dadurch können die Funktionen in jeder Programmiersprache geschrieben und plattformunabhängig ausgeführt werden. Für OpenFaaS ist es damit egal ob die Funktion in Java, Python oder Prolog geschrieben wurde.
 
-Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google oder Microsoft.
+Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google, Microsoft oder anderen Anbietern.
 
 ### Wichtige Begriffe:
 - Functions as a Service
@@ -47,14 +47,14 @@ Wenn das OpenFaaS Setup erfolgreich gestartet wurde lässt sich nun [http://loca
 ## Aufgabe 2: Funktionen ausführen
 Nachdem in Aufgabe 1 eine lokale OpenFaaS Instanz gestartet wurde sollen in dieser Aufgabe nun erste Funktionen ausgeführt werden.
 
-### Webinterface
+### 2.1 Webinterface
 Der einfachste Weg Funktionen in OpenFaaS auszuführen ist über das Webinterface auf [http://localhost:8080](http://localhost:8080) im Browser.
 
 ![openfaas ui](images/openfaas-ui.png)
 
 Als erstes soll nun die Funktion `func_wordcount` ausgeführt werden. Die Funktion liefert die Anzahl an Zeilenumbrüchen, Wörtern und Zeichen für den Text im Request Body zurück. Zunächst muss etwas als Inhalt im Request Body im Webinterface angegeben werden. Anschließend ruft ein Klick auf "Invoke" die Funktion auf und gibt den Response Body, sowie einen HTTP Status Code zurück. Ebenfalls können weitere Funktionen wie `func_markdown` ausgeführt werden, die Markdown in HTML konvertiert.
 
-### API
+### 2.2 API
 Das Webinterface eignet sich sehr gut, um sich Funktionen anzeigen zu lassen und zu testen, was die Eingabe und Ausgabe ist. Für komplexerer Funktionen oder den praktischen Einsatz in Kombination mit anderen Systemen ist jedoch die REST API von OpenFaaS sehr viel nützlicher.
 
 Funktionen können in OpenFaaS durch einen HTTP POST Request aufgerufen werden. Die URL für den Request setzt sich aus dem Host auf dem OpenFaaS läuft, dem Port und dem Funktionsnamen zusammen. Eine URL könnte Beispielsweise folgendermaßen aussehen:
@@ -77,25 +77,25 @@ Wenn dieser Funktion ausgeführt wird nun die Anzahl der Wörter zurückgeliefer
 ## Aufgabe 3: Funktionen erstellen
 In dem nächsten Schritt sollen nicht mehr länger nur bestehende Funktionen ausgeführt werden, sondern die erste eigene Serverless Function in Java geschrieben werden.
 
-### OpenFaaS CLI
+### 3.1 OpenFaaS CLI
 Es ist möglich OpenFaaS komplett über die REST API zu steuern. Einige Aufgaben werden durch den Kommandozeilen Client dabei deutlich erleichtert, Beispielsweise das Hochladen neuer Funktionen. Deshalb soll im nächsten Schritt der OpenFaaS CLI client installiert werden.
 
-### Linux
+#### Linux
 Folgender Befehl wird den CLI client in `/usr/local/bin/` installieren:
 
     curl -sSL https://cli.openfaas.com | sh
 
 Bei fehlenden Rechten in `/usr/local/bin/` zu schreiben gibt kann sonst auch der CLI client mit folgenden Befehlen installiert werden:
 
-    cd && mkdir -p bin && cd bin
+    mkdir -p ~/bin && cd ~/bin
     curl https://github.com/openfaas/faas-cli/releases/download/0.4.31/faas-cli
     chmod +x faas-cli
-    export PATH=$PATH:~/bin
+    export PATH=$PATH:$HOME/bin
 
-### Windows
+#### Windows
 Für die Installation des Clients unter Windows empfehlen wir die Bash Shell zu verwenden. Diese wird bei einer Installation von [Git](https://git-scm.com/) mitinstalliert. Auf den Poolrechner ist `Git Bash` bereits vorinstalliert und kann über die Suche gefunden werden. Anschließend sind die Befehle zu der Linux Anleitung identisch.
 
-### Hello World
+### 3.2 Hello World
 In dieser Aufgabe soll endlich die erste eigene Serverless Function programmiert werden. Die Grundlagen für das ausführen dieser Funktion befinden sich bereits auf [Github](https://github.com/theSoenke/serverless-tutorial/tree/master/tutorial-3). Das Dockerfile und die Datei stack.yml sind bereits vorgebenen und können direkt in ein neues lokales Verzeichnis ohne weitere Anpassungen kopiert werden.
 
 Die Funktion soll in diesem Beispiel in Java programmiert werden. Theorethisch lässt sich die Programmiersprache jedoch frei wählen, solange das Programm in einem Docker Container ausführbar ist. Als erster Schritt muss in dem neu erstelltem Verzeichnis mit den beiden Dateien `Dockerfile` und `stack.yml` eine dritte Datei `Handler.java` erstellt werden. Diese Datei soll die öffentliche Klasse Handler enthalten, welche die Java main Methode implementiert. Die Datei kann in jedem beliebigen Text Editor erstellt werden.
@@ -128,7 +128,7 @@ Wenn jetzt wieder das [Webinterface](http://localhost:8080) geöffnet wird, soll
 ## Aufgabe 4: Multimedia
 In den bisherigen Aufgaben waren die Ein- und Ausgaben der FaaS Funktionen ausschließlich Text. In dieser Aufgabe soll gezeigt werden, dass sich Serverless auch für Multimedia Aufgaben Einsatz finden kann.
 
-### Memes Service
+### 4.1 Memes Service
 In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt zwei Beschriftungen, sowie eine URL zum Bild seines Lieblingsmeme, an. Anschließend liefert die Funktion ein fertiges Meme aus den Beschriftungen und dem Bild.
 
 Als erster Schritt muss eine Funktion deployed werden, die in der Lage ist Memes aus dem Input zu generieren.
@@ -139,7 +139,7 @@ Damit ist der Meme Service bereits lauffähig und kann Memes generieren. Dies ka
 
     curl -X POST http://localhost:8080/function/meme-generator -d '{"image": "http://vignette4.wikia.nocookie.net/factpile/images/6/66/Lotr-boromir-1280jpg-b6a4d5_1280w.jpg","top": "ONE DOES NOT SIMPLY JUST","bottom": "DEPLOY TO PRODUCTION"}' > meme.jpg
 
-### Youtube Downloader
+### 4.2 Youtube Downloader
 Neben Bilder ist es auch möglich Videos über eine FaaS Funktion herunterzuladen. Im nächsten Beispiel kann eine Youtube URL übergeben werden und die Funktion liefert das heruntergeladene Video zurück.
 
     faas-cli deploy --image alexellis2/faas-youtubedl --name youtubedl
@@ -153,7 +153,7 @@ Wenn der Download erfolgreich war sollte sich die Datei cat_jump.mov in einem Vi
 ## Aufgabe 5: Skalieren und Überwachen
 Ein Vorteil von Serverless Functions ist das automatische Skalieren bei einem Anstieg der Last. Somit wird das Multithreading automtaisch vom FaaS übernommen. Die Skalierung funktioniert sogar besser als bei einem Multithreading auf einem Host, da die Funktionen über mehrere Hosts verteilt werden können, wenn das System entsprechend konfiguriert ist. In dieser Aufgabe soll es eine Einführung zum Autoscaling von Serverless Functions und der Überwachung der Systemlast geben.
 
-### Skalieren
+### 5.1 Skalieren
 
 Damit Last auf dem System erzeugt wird können Funktionen auf dem System in einer Schleife aufgerufen werden. Folgender Befehl wird die Funktion `func_nodeinfo` in einer While-Schleife immer wieder aufrufen und das Ergebnis der Funktion im Terminal ausgeben.
 
@@ -169,7 +169,7 @@ Das Ergebnis einer Funktionsausführung wird in etwa so aussehen:
 
 Bei einer ausreichend großen Last auf dem System wird ein Serverless System automatisch skalieren und neue Instanzen starten, damit Request parallel verarbeitet werden können. In dem Fall von OpenFaaS bedeutet dies, dass neue Docker Container gestartet werden. Damit sollte sich in der Ausgabe nach einer gewissen Zeit neue Hostnamen von neuen Instanzen erscheinen. Dieses skalieren ist bei einem Setup in einem Cluster von Rechner nicht nur lokal möglich, sondern kann über dutzende bis hunderte von Rechnner erfolgen.
 
-### Überwachen
+### 5.2 Überwachen
 Für das Überwachen eines Serverless Systems gibt es verschiedene Lösungen. Populär ist in diesem Bereich beispielsweise die von Soundcloud entwickelte Open Source Lösung [Prometheus](https://prometheus.io). OpenFaaS hat bereits ein Monitoring mit Prometheus integriert. Dafür muss [localhost:9090](http://localhost:9090) im Browser geöffnet werden.
 
 Anschließend lassen sich in Prometheus verschiedene Daten visualiseren. Beispielsweise wie häufig wurden bestimme Funktionen aufgerufen? Wie lange hat die Ausführung benötigt? Wie oft wurde etwa die Funktion `func_nodeinfo` in der vorherigen Aufgabe ausgeführt?
