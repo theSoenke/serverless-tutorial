@@ -12,10 +12,10 @@ Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach
 - DevOps
 
 ## Aufgabe 1: Setup
-Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz `PWD` zum Testen zu verwenden. Wir empfehlen Play with Docker zu verwenden, da es auf den Poolrechnern immer wieder Probleme beim Aufrufen von Funktionen gab.
+Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz PWD zum Testen zu verwenden. Wir empfehlen Play with Docker zu verwenden, da es auf den Poolrechnern immer wieder Probleme beim Aufrufen von Funktionen gab.
 
 ### Play with Docker
-Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.com](https://hub.docker.com/) benötigt. Anschließend kann dieser Account verwendet werden, um sich auf [play-with-docker.com](https://labs.play-with-docker.com) anzumelden. Nach einer erfolgreichen Anmeldung wird auf eine Seite weitergeleitet, auf der Server Instanzen erstellt werden können. Die neu erstelle Instanz lässt sich über ein Webterminal kontrollieren.
+Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.com](https://hub.docker.com/) benötigt. Anschließend kann dieser Account verwendet werden, um sich auf [play-with-docker.com](https://labs.play-with-docker.com) anzumelden. Nach einer erfolgreichen Anmeldung wird auf eine Seite weitergeleitet, auf der Server Instanzen erstellt werden können. Die neu erstellte Instanz lässt sich über ein Webterminal kontrollieren.
 
 
 ### Eigener Rechner
@@ -125,7 +125,7 @@ Nun geht es daran die Logik der Serverless Function zu implementieren. In diesem
 System.out.print("Hello World");
 ```
 
-Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Docker Container gebaut werden. Ein Docker Container ist hier der Weg, um die Anwendung zu verpacken und plattformunabhängig auszuführen, da der Docker Container alle Abhängigkeiten enthält.
+Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Docker Container gebaut werden. Ein Docker Container ist hier der Weg, um die Anwendung zu verpacken und plattformunabhängig auszuführen, da der Docker Container alle Abhängigkeiten enthält. Bevor der Container gebaut werden kann muss noch das Gateway, auf dem OpenFaaS erreichbar ist, in der stack.yml Datei angepasst werden. Standardmäßig ist das Gateway http://localhost:8080.
 
     faas-cli build -f stack.yml
 
@@ -184,8 +184,8 @@ Für das Überwachen eines Serverless Systems gibt es verschiedene Lösungen. Po
 
 Anschließend lassen sich in Prometheus verschiedene Daten visualiseren. Beispielsweise wie häufig wurden bestimme Funktionen aufgerufen? Wie lange hat die Ausführung benötigt? Wie oft wurde etwa die Funktion `func_nodeinfo` in der vorherigen Aufgabe ausgeführt?
 
-## Aufgabe 6: Eigene Funktionen
-Als Zusatzaufgabe können jetzt noch eigene Funktionen geschrieben werden. Falls die Funktion auch eine Eingabe bekommen soll ein kleines Beispiel, wie die Eingabe in Java von stdin gelesen werden kann:
+## Aufgabe 6: Serverless Fibonacci
+Als Zusatzaufgabe soll jetzt eine Serverless Fibonacci Funktion implementiert werden. Für die Grundlagen kann das Hello World aus Aufgabe 3 kopiert werden.  Zusätzlich hier ein kleines Beispiel, wie die Eingabe in Java von stdin gelesen werden kann:
 
 ```java
 private static String readStdin() throws IOException {
