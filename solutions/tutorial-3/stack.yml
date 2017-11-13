@@ -6,4 +6,4 @@ functions:
   hello-world:
     lang: Dockerfile
     handler: ./
-    image: functions/hello-world
+    image: <username>/hello-world
