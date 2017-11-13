@@ -1,12 +1,3 @@
-## Vorraussetzungen
-Für dieses Tutorial empfehlen wir die Poolrechner mit Linux zu verwenden. Auf diesen Rechner ist bereits alle notwendige Software und der richtigen Version vorinstalliert.
-
-Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen.
-Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
-- Docker >= 17.04
-- Docker Compose >= 1.13
-
-Edit: Das ganze funktioniert auch unter Windows, insofern man die Software für Windowssysteme installiert.
 
 ## OpenFaaS Einleitung
 OpenFaaS - was ist das überhaupt? OpenFaaS ist ein Open Source Framework für Serverless Functions basierend auf Docker. Docker wird verwendet, um die Funktionen zu "verpacken". Dadurch können die Funktionen in jeder Programmiersprache geschrieben und plattformunabhängig ausgeführt werden. Für OpenFaaS ist es damit egal ob die Funktion in Java, Python oder Prolog geschrieben wurde.
@@ -21,11 +12,25 @@ Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach
 - DevOps
 
 ## Aufgabe 1: Setup
-Als erster Schritt muss eine lokale OpenFaaS Instanz vor allen weiteren Schritten gestartet werden. Dafür müssen folgende Schritte ausgeführt werden:
+Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz `PWD` zum Testen zu verwenden. Wir empfehlen Play with Docker zu verwenden, da es auf den Poolrechnern immer wieder Probleme beim Aufrufen von Funktionen gab.
 
-1. Ein Terminal öffnen und in ein Verzeichnis navigieren z.b.
+### Play with Docker
+Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.com](https://hub.docker.com/) benötigt. Anschließend kann dieser Account verwendet werden, um sich auf [play-with-docker.com](https://labs.play-with-docker.com) anzumelden. Nach einer erfolgreichen Anmeldung wird auf eine Seite weitergeleitet, auf der Server Instanzen erstellt werden können. Die neu erstelle Instanz lässt sich über ein Webterminal kontrollieren.
 
-    `cd ~/Downloads`
+
+### Eigener Rechner
+Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen.
+Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
+- Docker >= 17.04
+- Docker Compose >= 1.13
+
+### OpenFaaS Setup
+
+1. Docker Swarm initialisieren
+
+    `docker swarm init`
+
+    Falls OpenFaaS auf Play with Docker ausgeführt wird muss noch `--advertise-addr eth0` an den Befehl angehängt werden.
 2. OpenFaaS Repository klonen
 
     `git clone https://github.com/openfaas/faas`
@@ -35,14 +40,19 @@ Als erster Schritt muss eine lokale OpenFaaS Instanz vor allen weiteren Schritte
 4. Richtige Version in Git auschecken
 
     `git checkout 0.6.8`
-4. Docker Swarm initialisieren
-
-    `docker swarm init`
 5. OpenFaaS Start Script ausführen
 
     `./deploy_stack.sh`
 
-Wenn das OpenFaaS Setup erfolgreich gestartet wurde lässt sich nun [http://localhost:8080](http://localhost:8080) im Browser öffnen. Auf mehr Details in dem Webinterface soll in der nächsten Aufgabe eingegangen werden.
+6. Anschließend lassen sich die verfügbaren Funktionen mit folgenden Befehl als Docker Services anzeigen:
+
+    `docker service ls`
+
+Wenn das OpenFaaS Setup erfolgreich gestartet wurde lässt sich nun [http://localhost:8080](http://localhost:8080) im Browser öffnen. Auf mehr Details in dem Webinterface soll in der nächsten Aufgabe eingegangen werden. Bei einem Setup auf den Poolrechner muss anstelle von `http://localhost:8080` immer `http://127.0.0.1:8080` verwendet werden.
+
+Bei PWD sollten nach dem Setup 3 Links zu den Ports 9090, 9093 und 8080 angezeigt werden. Die URLs dieser Ports werden anstelle von `localhost:8080` verwendet. Dabei muss kein Port explizit mit angegeben werden. Zusätzlich muss "/ui" aus dem Ende der URL entfernt werden, falls dies Teil der URL sein sollte.
+
+![pwd ports](images/pwd-ports.png)
 
 ## Aufgabe 2: Funktionen ausführen
 Nachdem in Aufgabe 1 eine lokale OpenFaaS Instanz gestartet wurde sollen in dieser Aufgabe nun erste Funktionen ausgeführt werden.
