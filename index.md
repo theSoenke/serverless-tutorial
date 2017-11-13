@@ -131,7 +131,7 @@ Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Dock
 
 Wenn das Bauen des Containers erfolgreich war, kann dieser nun als Funktion in OpenFaaS deployed werden.
 
-    faas-cli deploy -f stack.yml
+    faas-cli deploy -f stack.yml --gateway http://localhost:8080
 
 Wenn jetzt wieder das [Webinterface](http://localhost:8080) geöffnet wird, sollte nun eine zusätzliche Funktion `hello-world` angezeigt werden. Ein Klick auf "Invoke" wird nun "Hello World" zurückgeben. Diese "Hello World" Funktion enthält bereits fast alle Grundlagen für komplexere FaaS Funktionen. Alles notwendige, um eine Funktion zu schreiben, ist von stdin die Eingabe zu lesen, Berechnungen durchzuführen und die Ausgabe wieder auf stdout zu schreiben.
 
@@ -143,7 +143,7 @@ In dieser Aufgabe soll ein Service für Memes erstellt werden. Der Nutzer gibt z
 
 Als erster Schritt muss eine Funktion deployed werden, die in der Lage ist Memes aus dem Input zu generieren.
 
-    faas-cli deploy --image developius/faas-mememachine --name meme-generator
+    faas-cli deploy --image developius/faas-mememachine --name meme-generator --gateway http://localhost:8080
 
 Damit ist der Meme Service bereits lauffähig und kann Memes generieren. Dies kann ebenfalls über cURL geschehen. Die Ausgabe von cURL wird anschließend in eine Datei geschrieben.
 
@@ -152,7 +152,7 @@ Damit ist der Meme Service bereits lauffähig und kann Memes generieren. Dies ka
 ### 4.2 Youtube Downloader
 Neben Bilder ist es auch möglich Videos über eine FaaS Funktion herunterzuladen. Im nächsten Beispiel kann eine Youtube URL übergeben werden und die Funktion liefert das heruntergeladene Video zurück.
 
-    faas-cli deploy --image alexellis2/faas-youtubedl --name youtubedl
+    faas-cli deploy --image alexellis2/faas-youtubedl --name youtubedl --gateway http://localhost:8080
 
 Dann muss nur noch die Funktion mit einem Video aufgerufen werden:
 
