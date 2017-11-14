@@ -2,7 +2,7 @@
 ## OpenFaaS Einleitung
 OpenFaaS - was ist das überhaupt? OpenFaaS ist ein Open Source Framework für Serverless Functions basierend auf Docker. Docker wird verwendet, um die Funktionen zu "verpacken". Dadurch können die Funktionen in jeder Programmiersprache geschrieben und plattformunabhängig ausgeführt werden. Für OpenFaaS ist es damit egal ob die Funktion in Java, Python oder Prolog geschrieben wurde.
 
-Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google, Microsoft oder anderen Anbietern.
+Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach Services erstellen in jeder Programmiersprache und Framework, die sich beliebig miteinander koppeln lassen. Durch das auschließliche Ausführen der Funktionen, wenn sie aufgerufen werden lassen sich Resource und Kosten sparen, da Server nicht dauerhaft im Hintergrund laufen. OpenFaaS ist Open Source und somit gibt es keine Abhängigkeiten von Providern wie Amazon, Google, Microsoft oder anderen Anbietern. Im Gegenzug muss das Managment von dem OpenFaaS Service übernommen werden.
 
 ### Wichtige Begriffe:
 - Functions as a Service
@@ -12,7 +12,7 @@ Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach
 - DevOps
 
 ## Aufgabe 1: Setup
-Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz PWD zum Testen zu verwenden. Wir empfehlen Play with Docker zu verwenden, da es auf den Poolrechnern immer wieder Probleme beim Aufrufen von Funktionen gab.
+Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz PWD zum Testen zu verwenden.
 
 ### Play with Docker
 Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.com](https://hub.docker.com/) benötigt. Anschließend kann dieser Account verwendet werden, um sich auf [play-with-docker.com](https://labs.play-with-docker.com) anzumelden. Nach einer erfolgreichen Anmeldung wird auf eine Seite weitergeleitet, auf der Server Instanzen erstellt werden können. Die neu erstellte Instanz lässt sich über ein Webterminal kontrollieren.
