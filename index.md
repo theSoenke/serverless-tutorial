@@ -12,14 +12,14 @@ Warum sind Serverless Functions und OpenFaaS interessant? Es lassen sich einfach
 - DevOps
 
 ## Aufgabe 1: Setup
-Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz PWD zum Testen zu verwenden.
+Als erster Schritt muss eine OpenFaaS Instanz gestartet werden. Dafür gibt es entweder die Möglichkeit das Setup lokal einzurichten oder einen exteren Service wie [play-with-docker.com](https://labs.play-with-docker.com) kurz PWD zum Testen zu verwenden. Wir empfehlen erstmal das lokale Setup auf den Pollrechner zu verwenden, da dies etwas einfacher ist.
 
 ### Play with Docker
 Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.com](https://hub.docker.com/) benötigt. Anschließend kann dieser Account verwendet werden, um sich auf [play-with-docker.com](https://labs.play-with-docker.com) anzumelden. Nach einer erfolgreichen Anmeldung wird auf eine Seite weitergeleitet, auf der Server Instanzen erstellt werden können. Die neu erstellte Instanz lässt sich über ein Webterminal kontrollieren.
 
 
 ### Eigener Rechner
-Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen. Dafür gibt es jedoch die Vorraussetzung, dass mindestens Docker 17.04 installiert ist.
+Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen. Dafür muss jedoch mindestens Docker 17.04 installiert sein.
 
 ### OpenFaaS Setup
 1. Docker Swarm initialisieren
@@ -71,7 +71,7 @@ POST Request können in cURL mit folgendem Befehl geschickt werden:
 
     curl -X POST <URL>
 
-Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Bei einer erfoglreichen Ausführung sollte der OutPut das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
+Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Bei einer erfoglreichen Ausführung sollte der Output das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
 
 Auch über cURL lassen sich Daten mit im Request Body übergeben, die für Funktionen benötigt werden. Hierfür soll nun die Funktion `func_wordcount` ausgeführt werden. Daten im Request Body lassen sich in cURL folgendermaßen übergeben:
 
@@ -94,7 +94,7 @@ Folgender Befehl wird den CLI client in `/usr/local/bin/` installieren:
 Bei fehlenden Rechten in `/usr/local/bin/` zu schreiben gibt kann sonst auch der CLI client mit folgenden Befehlen installiert werden:
 
     mkdir -p ~/bin && cd ~/bin
-    curl https://github.com/openfaas/faas-cli/releases/download/0.4.31/faas-cli
+    wget https://github.com/openfaas/faas-cli/releases/download/0.4.31/faas-cli
     chmod +x faas-cli
     export PATH=$PATH:$HOME/bin
 
@@ -158,7 +158,7 @@ Dann muss nur noch die Funktion mit einem Video aufgerufen werden:
 
     curl http://localhost:8080/function/youtubedl -d "https://www.youtube.com/watch?v=nG2rNBFzkGE" > cat_jump.mov
 
-Wenn der Download erfolgreich war sollte sich die Datei cat_jump.mov in einem Videoplayer öffnen lassen.
+Wenn der Download erfolgreich war sollte sich die Datei cat_jump.mov in einem Videoplayer öffnen lassen. Der Download von den Videos hat leider nicht immer zuverlässig auf den Poolrechner funktioniert. Sollte sich das Video nicht komplett herunterladen lassen ist dies aber beispielsweise über Play with Docker moglich.
 
 ## Aufgabe 5: Skalieren und Überwachen
 Ein Vorteil von Serverless Functions ist das automatische Skalieren bei einem Anstieg der Last. Somit wird das Multithreading automtaisch vom FaaS übernommen. Die Skalierung funktioniert sogar besser als bei einem Multithreading auf einem Host, da die Funktionen über mehrere Hosts verteilt werden können, wenn das System entsprechend konfiguriert ist. In dieser Aufgabe soll es eine Einführung zum Autoscaling von Serverless Functions und der Überwachung der Systemlast geben.
