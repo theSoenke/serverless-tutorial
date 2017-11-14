@@ -6,4 +6,4 @@ functions:
   fibonacci:
     lang: Dockerfile
     handler: ./
-    image: <username>/fibonacci
+    image: functions/fibonacci

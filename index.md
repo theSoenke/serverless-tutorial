@@ -125,7 +125,7 @@ Damit ist bereits die erste Serverless Function komplett. Nun muss noch ein Dock
 
     faas-cli build -f stack.yml
 
-Falls die Funktion nicht lokal verwendet werden soll z.b. mit PWD muss sie zunächst zu der Docker Registry hub.docker.com hochgeladen werden. Von dort wird sich OpenFaaS anschließend die Funktion bzw. den Docker Container wieder herunterladen. Zuvor müssen die Zugangsdaten zu hub.docker.com mit `docker login` eingeben werden. Anschließen kann die Funktion hochgeladen werden:
+Falls die Funktion nicht lokal verwendet werden soll z.b. mit PWD muss sie zunächst zu der Docker Registry hub.docker.com hochgeladen werden. Von dort wird sich OpenFaaS anschließend die Funktion bzw. den Docker Container wieder herunterladen. Zuvor müssen die Zugangsdaten zu hub.docker.com mit `docker login` eingeben werden. In stack.yml muss zudem im Image Namen "functions" durch den Nutzernamen ersetzt werden. Anschließen kann die Funktion hochgeladen werden:
 
     faas-cli push -f stack.yml
 
