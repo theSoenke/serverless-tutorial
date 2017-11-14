@@ -19,13 +19,9 @@ Damit Play with Docker verwendet werden kann wird ein Account für [hub.docker.c
 
 
 ### Eigener Rechner
-Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen.
-Dafür gibt es folgende Vorraussetzungen an Software, die installiert sein muss:
-- Docker >= 17.04
-- Docker Compose >= 1.13
+Es ist ebenfalls möglich das Tutorial auf dem eigenen Rechner durchzuführen. Dafür gibt es jedoch die Vorraussetzung, dass mindestens Docker 17.04 installiert ist.
 
 ### OpenFaaS Setup
-
 1. Docker Swarm initialisieren
 
     `docker swarm init`
@@ -75,7 +71,7 @@ POST Request können in cURL mit folgendem Befehl geschickt werden:
 
     curl -X POST <URL>
 
-Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Bei einer erfoglreichen Ausfürhung sollte der OutPut das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
+Nun sollt ihr die Funktion `func_nodeinfo` mit einem cURL ausführen, die Informationen zum System zurückliefert. Bei einer erfoglreichen Ausführung sollte der OutPut das Betriebssystem, Anzahl der verfügbaren CPU Kernen und Laufzeit des System zurückliefern.
 
 Auch über cURL lassen sich Daten mit im Request Body übergeben, die für Funktionen benötigt werden. Hierfür soll nun die Funktion `func_wordcount` ausgeführt werden. Daten im Request Body lassen sich in cURL folgendermaßen übergeben:
 
